@@ -12,18 +12,13 @@ const pxRef = ref(null);
 
 onMounted(async () => {
   let app = new Application({ width: 640, height: 360 });
-  //   document.body.appendChild(app.view);
-  // pxRef.value.appendChild(app.view);
 
   // The application will create a renderer using WebGL, if possible,
   // with a fallback to a canvas render. It will also setup the ticker
   // and the root stage PIXI.Container
-  // const app = new Application({ width: 640, height: 360 });
-  // The application will create a canvas element for you that you
-  // can then insert into the DOM
   pxRef.value.appendChild(app.view);
-  // document.body.appendChild(app.view)
-  // load the texture we need
+
+  // 材质
   const texture = await Assets.load(Logo);
 
   // This creates a texture from a 'bunny.png' image
@@ -37,9 +32,15 @@ onMounted(async () => {
   // Add the bunny to the scene we are building
   app.stage.addChild(bunny);
   // Listen for frame updates
-  app.ticker.add(() => {
-    // each frame we spin the bunny around a bit
-    bunny.rotation += 0.01;
+  // app.ticker.add(() => {
+  //   // each frame we spin the bunny around a bit
+  //   bunny.rotation += 0.01;
+  // });
+
+  let elapsed = 0.0;
+  app.ticker.add(delta => {
+    elapsed += delta;
+    bunny.x = 300.0 + Math.cos(elapsed / 50.0) * 100.0;
   });
 });
 </script>
