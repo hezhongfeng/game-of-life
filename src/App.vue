@@ -1,85 +1,47 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div ref="pxRef"></div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<script setup>
+import { Application, Sprite, Assets } from 'pixi.js';
+// import { RouterLink, RouterView } from 'vue-router';
+import { ref, onMounted } from 'vue';
+import Logo from './assets/logo.svg';
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+const pxRef = ref(null);
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+onMounted(async () => {
+  let app = new Application({ width: 640, height: 360 });
+  //   document.body.appendChild(app.view);
+  // pxRef.value.appendChild(app.view);
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
+  // The application will create a renderer using WebGL, if possible,
+  // with a fallback to a canvas render. It will also setup the ticker
+  // and the root stage PIXI.Container
+  // const app = new Application({ width: 640, height: 360 });
+  // The application will create a canvas element for you that you
+  // can then insert into the DOM
+  pxRef.value.appendChild(app.view);
+  // document.body.appendChild(app.view)
+  // load the texture we need
+  const texture = await Assets.load(Logo);
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
+  // This creates a texture from a 'bunny.png' image
+  const bunny = new Sprite(texture);
+  // Setup the position of the bunny
+  bunny.x = app.renderer.width / 2;
+  bunny.y = app.renderer.height / 2;
+  // Rotate around the center
+  bunny.anchor.x = 0.5;
+  bunny.anchor.y = 0.5;
+  // Add the bunny to the scene we are building
+  app.stage.addChild(bunny);
+  // Listen for frame updates
+  app.ticker.add(() => {
+    // each frame we spin the bunny around a bit
+    bunny.rotation += 0.01;
+  });
+});
+</script>
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+<style></style>
