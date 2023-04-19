@@ -1,38 +1,34 @@
 import { Application, Graphics } from 'pixi.js';
-
-// const hasBegin = false;
+import start from './controller.js';
+import { cells, RowNumber, gridLength, changeCellState, hasBegin } from './common.js';
 
 export default refValue => {
-  const RowNumber = 70;
-
-  const gridLength = 10;
-
-  let app = new Application({ width: RowNumber * gridLength, height: RowNumber * gridLength });
+  let app = new Application({ width: RowNumber * gridLength + 100, height: RowNumber * gridLength });
   refValue.appendChild(app.view);
 
-  const changeState = event => {
-    const square = event.target;
-    const beforeColor = square.beforeColor;
-    square.beforeColor = square.fill.color;
-    square.isLive = !square.isLive;
-    square.clear();
-    square.beginFill(beforeColor);
-    square.drawRect(0, 0, gridLength, gridLength);
-  };
-
+  // 画出表格
   for (let i = 0; i < RowNumber; i++) {
+    const row = [];
+    cells.push(row);
     for (let j = 0; j < RowNumber; j++) {
-      let square = new Graphics();
+      let cell = new Graphics();
       let bgColor = (i + j) % 2 === 0 ? '#87B990' : '#7eb187';
-      square.beginFill(bgColor);
-      square.drawRect(0, 0, gridLength, gridLength);
-      square.position.x = gridLength * i;
-      square.position.y = gridLength * j;
-      square.interactive = true;
-      square.isLive = false;
-      square.beforeColor = 16777215;
-      square.on('pointerdown', changeState);
-      app.stage.addChild(square);
+      const onClick = event => {
+        if (!hasBegin) {
+          changeCellState(event.target);
+        }
+      };
+      cell.beginFill(bgColor);
+      cell.drawRect(0, 0, gridLength, gridLength);
+      cell.position.x = gridLength * i;
+      cell.position.y = gridLength * j;
+      cell.interactive = true;
+      cell.isLive = false;
+      cell.beforeColor = '#BBDBBF';
+      cell.on('pointerdown', onClick);
+      app.stage.addChild(cell);
+      row.push(cell);
     }
   }
+  start(app);
 };
