@@ -2,11 +2,19 @@ import { Application, Graphics } from 'pixi.js';
 import start from './controller.js';
 import { cells, RowNumber, gridLength, changeCellState, hasBegin } from './common.js';
 
-export default refValue => {
-  let app = new Application({ width: RowNumber * gridLength + 100, height: RowNumber * gridLength });
+const init = refValue => {
+  let app = new Application({
+    width: RowNumber * gridLength + 100,
+    height: RowNumber * gridLength,
+    background: 0xcfcbc7
+  });
   refValue.appendChild(app.view);
+  drawGrid(app);
+  start(app);
+};
 
-  // 画出表格
+// 画出表格，以及初始状态
+const drawGrid = app => {
   for (let i = 0; i < RowNumber; i++) {
     const row = [];
     cells.push(row);
@@ -24,11 +32,12 @@ export default refValue => {
       cell.position.y = gridLength * j;
       cell.interactive = true;
       cell.isLive = false;
-      cell.beforeColor = '#BBDBBF';
+      cell.beforeColor = '#1e5428';
       cell.on('pointerdown', onClick);
       app.stage.addChild(cell);
       row.push(cell);
     }
   }
-  start(app);
 };
+
+export { init, drawGrid };

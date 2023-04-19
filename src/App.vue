@@ -4,15 +4,12 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-// import sence from './example/wood';
-// import sence from './example/mask.js';
-// import sence from './example/scenegraph.js';
-import sence from './example/board';
+import { init } from './game/init';
 
 const pxRef = ref(null);
 
 onMounted(async () => {
-  sence(pxRef.value);
+  init(pxRef.value);
 });
 </script>
 

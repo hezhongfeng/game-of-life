@@ -2,7 +2,7 @@ const RowNumber = 20;
 
 const gridLength = 30;
 
-const cells = [];
+let cells = [];
 
 let hasBegin = false;
 
@@ -19,4 +19,14 @@ const changeGameState = () => {
   hasBegin = !hasBegin;
 };
 
-export { cells, changeCellState, changeGameState, RowNumber, gridLength, hasBegin };
+const clearCellsState = () => {
+  for (let i = 0; i < RowNumber; i++) {
+    for (let j = 0; j < RowNumber; j++) {
+      if (cells[i][j].isLive) {
+        changeCellState(cells[i][j]);
+      }
+    }
+  }
+};
+
+export { cells, changeCellState, changeGameState, RowNumber, gridLength, hasBegin, clearCellsState };
