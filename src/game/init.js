@@ -1,6 +1,7 @@
 import { Application, Graphics } from 'pixi.js';
 
 import { RowNumber, gridLength } from './config.js';
+import { hasBegin, changeCellState } from './state.js';
 
 const init = async (refValue) => {
   let app = new Application();
@@ -20,22 +21,23 @@ const drawGrid = (app) => {
     // cells.push(row)
     for (let j = 0; j < RowNumber; j++) {
       let cell = new Graphics();
+
       let bgColor = (i + j) % 2 === 0 ? '#87B990' : '#7eb187';
       const onClick = (event) => {
-        console.log('click');
-        // if (!hasBegin) {
-        //   changeCellState(event.target);
-        // }
+        if (!hasBegin) {
+          changeCellState(event.target);
+        }
       };
 
       cell.rect(0, 0, gridLength, gridLength);
-      // cell.fill(bgColor);
+      cell.fill(bgColor);
+
       cell.position.x = gridLength * i;
       cell.position.y = gridLength * j;
       // 添加事件反馈
       cell.interactive = true;
       cell.isLive = false;
-      cell.beforeColor = '#1e5428';
+      cell.beforeColor = '#333333';
       cell.on('pointerdown', onClick);
       app.stage.addChild(cell);
       // row.push(cell);
