@@ -1,4 +1,4 @@
-const RowNumber = 20
+const RowNumber = 40
 
 const gridLength = 20
 
