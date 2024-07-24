@@ -10,7 +10,7 @@ const changeCellState = (cell) => {
   const beforeColor = cell.beforeColor;
   cell.beforeColor = cell.fillStyle.color;
   cell.isLive = !cell.isLive;
-  cell.clear();
+  //   cell.clear();
   cell.rect(0, 0, gridLength, gridLength);
   cell.fill(beforeColor);
 };

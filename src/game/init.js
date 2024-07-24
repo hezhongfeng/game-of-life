@@ -37,7 +37,7 @@ const drawGrid = (app) => {
       // 添加事件反馈
       cell.interactive = true;
       cell.isLive = false;
-      cell.beforeColor = '#333333';
+      cell.beforeColor = '#1e5428';
       cell.on('pointerdown', onClick);
       app.stage.addChild(cell);
       // row.push(cell);
