@@ -1,7 +1,7 @@
 import { cells, changeCellState } from './init.js';
 import { RowNumber, cycle } from './config.js';
 
-// (1)当前细胞为死亡状态时，当周围有3个存活细胞时，则迭代后该细胞变成存活状态(模拟繁殖)；若原先为生，则保持不变。
+// (1)当前细胞为死亡状态时，当周围有3个存活细胞时，则迭代后该细胞变成存活状态(模拟繁殖)；
 // (2)当前细胞为存活状态时，当周围的邻居细胞低于两个(不包含两个)存活时，该细胞变成死亡状态(模拟生命数量稀少)。
 // (3)当前细胞为存活状态时，当周围有两个或3个存活细胞时，该细胞保持原样。
 // (4)当前细胞为存活状态时，当周围有3个以上的存活细胞时，该细胞变成死亡状态(模拟生命数量过多)。
@@ -80,7 +80,9 @@ const getNextLiveCellsNumberMatrix = () => {
 const getNextCycleCellsState = () => {
   for (let i = 0; i < RowNumber; i++) {
     for (let j = 0; j < RowNumber; j++) {
+      // 当前细胞状态
       const currentCellState = cellsStateMatrix[i][j];
+      // 当前细胞周围存活细胞数
       const nextLiveCellsNumber = nextLiveCellsNumberMatrix[i][j];
       // alive
       if (currentCellState) {
@@ -88,7 +90,7 @@ const getNextCycleCellsState = () => {
           changeCellState(cells[i][j]);
         }
       } else {
-        if (nextLiveCellsNumber >= 3) {
+        if (nextLiveCellsNumber == 3) {
           changeCellState(cells[i][j]);
         }
       }
