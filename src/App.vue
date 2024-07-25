@@ -3,7 +3,7 @@
     <div ref="pxRef"></div>
     <div class="operations">
       <Button :label="startLabel" @click="stateStore.changeGameState" raised />
-      <Button label="清除" raised />
+      <Button label="清除" @click="clearGame" raised />
     </div>
   </div>
 </template>
@@ -22,6 +22,15 @@ onMounted(() => {
 });
 
 const startLabel = computed(() => (stateStore.hasBegin ? '暂停' : '开始'));
+
+const clearGame = () => {
+  // startText.text = '开始';
+  // stop();
+  // clearCellsState();
+  if (stateStore.hasBegin) {
+    stateStore.changeGameState();
+  }
+};
 </script>
 
 <style lang="scss">

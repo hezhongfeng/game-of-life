@@ -6,7 +6,6 @@ export const useStateStore = defineStore('state', () => {
 
   function changeGameState() {
     hasBegin.value = !hasBegin.value;
-    console.log(hasBegin.value);
   }
 
   return { hasBegin, changeGameState };
