@@ -2,7 +2,7 @@
   <div class="app">
     <div ref="pxRef"></div>
     <div class="operations">
-      <Button :label="startLabel" @click="stateStore.changeGameState" raised />
+      <Button :label="startLabel" @click="onStart" raised />
       <Button label="清除" @click="clearGame" raised />
     </div>
   </div>
@@ -10,9 +10,10 @@
 
 <script setup>
 import Button from 'primevue/button';
-import { init } from '@/game/init.js';
+import { init, clearCellsState } from '@/game/init.js';
 import { ref, onMounted, computed } from 'vue';
 import { useStateStore } from '@/stores/state.js';
+import { run, stop } from '@/game/life.js';
 
 const pxRef = ref(null);
 const stateStore = useStateStore();
@@ -23,12 +24,20 @@ onMounted(() => {
 
 const startLabel = computed(() => (stateStore.hasBegin ? '暂停' : '开始'));
 
+const onStart = () => {
+  if (stateStore.hasBegin) {
+    stop();
+  } else {
+    run();
+  }
+  stateStore.changeGameState();
+};
+
 const clearGame = () => {
-  // startText.text = '开始';
-  // stop();
-  // clearCellsState();
+  clearCellsState();
   if (stateStore.hasBegin) {
     stateStore.changeGameState();
+    stop();
   }
 };
 </script>

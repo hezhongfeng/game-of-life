@@ -14,12 +14,14 @@ const init = async (refValue) => {
   drawGrid(app);
 };
 
+const cells = [];
+
 // 画出表格，以及初始状态
 const drawGrid = (app) => {
   const stateStore = useStateStore();
   for (let i = 0; i < RowNumber; i++) {
-    // const row = [];
-    // cells.push(row)
+    const row = [];
+    cells.push(row);
     for (let j = 0; j < RowNumber; j++) {
       let cell = new Graphics();
 
@@ -41,16 +43,9 @@ const drawGrid = (app) => {
       cell.beforeColor = '#1e5428';
       cell.on('pointerdown', onClick);
       app.stage.addChild(cell);
-      // row.push(cell);
+      row.push(cell);
     }
   }
-
-  // let obj = new Graphics();
-  // obj.rect(0, 0, 200, 100);
-  // obj.fill(0xff0000);
-
-  // Add it to the stage to render
-  // app.stage.addChild(obj);
 };
 
 const changeCellState = (cell) => {
@@ -64,4 +59,14 @@ const changeCellState = (cell) => {
   cell.fill(beforeColor);
 };
 
-export { init };
+const clearCellsState = () => {
+  for (let i = 0; i < RowNumber; i++) {
+    for (let j = 0; j < RowNumber; j++) {
+      if (cells[i][j].isLive) {
+        changeCellState(cells[i][j]);
+      }
+    }
+  }
+};
+
+export { init, clearCellsState, cells, changeCellState };
