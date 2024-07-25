@@ -1,7 +1,7 @@
 import { Application, Graphics } from 'pixi.js';
 
 import { RowNumber, gridLength } from './config.js';
-import { hasBegin, changeCellState } from './state.js';
+import { useStateStore } from '@/stores/state.js';
 
 const init = async (refValue) => {
   let app = new Application();
@@ -16,6 +16,7 @@ const init = async (refValue) => {
 
 // 画出表格，以及初始状态
 const drawGrid = (app) => {
+  const stateStore = useStateStore();
   for (let i = 0; i < RowNumber; i++) {
     // const row = [];
     // cells.push(row)
@@ -24,7 +25,7 @@ const drawGrid = (app) => {
 
       let bgColor = (i + j) % 2 === 0 ? '#87B990' : '#7eb187';
       const onClick = (event) => {
-        if (!hasBegin) {
+        if (!stateStore.hasBegin) {
           changeCellState(event.target);
         }
       };
@@ -50,6 +51,17 @@ const drawGrid = (app) => {
 
   // Add it to the stage to render
   // app.stage.addChild(obj);
+};
+
+const changeCellState = (cell) => {
+  const beforeColor = cell.beforeColor;
+  cell.beforeColor = cell.fillStyle.color;
+  cell.isLive = !cell.isLive;
+  // 清除以前的绘制
+  cell.clear();
+  // 重新绘制矩形
+  cell.rect(0, 0, gridLength, gridLength);
+  cell.fill(beforeColor);
 };
 
 export { init };
