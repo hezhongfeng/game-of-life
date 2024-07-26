@@ -20,8 +20,8 @@
         <InputNumber class="flex-auto" :modelValue="settingStore.cycle" @update:modelValue="settingStore.changeCycle" inputId="cycle" :useGrouping="false" />
       </div>
       <div class="flex justify-end gap-2">
-        <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
-        <Button type="button" label="Save" @click="visible = false"></Button>
+        <Button type="button" label="取消" severity="secondary" @click="settingDialog = false"></Button>
+        <Button type="button" label="保存" @click="onSave"></Button>
       </div>
     </Dialog>
   </div>
@@ -29,7 +29,7 @@
 
 <script setup>
 import Button from 'primevue/button';
-import { init, clearCellsState } from '@/game/init.js';
+import { init, clearCellsState, reDrawGrid } from '@/game/init.js';
 import { ref, onMounted, computed } from 'vue';
 import { useStateStore } from '@/stores/state.js';
 import { useSettingStore } from '@/stores/setting.js';
@@ -64,7 +64,10 @@ const clearGame = () => {
   }
 };
 
-const cycle = ref(500);
+const onSave = () => {
+  settingDialog.value = false;
+  reDrawGrid();
+};
 </script>
 
 <style lang="scss">
