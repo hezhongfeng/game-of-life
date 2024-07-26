@@ -14,7 +14,7 @@ const init = async (refValue) => {
     background: 0xcfcbc7
   });
   refValue.appendChild(app.canvas);
-  drawGrid();
+  drawGrid(settingStore);
 };
 
 const cells = [];
