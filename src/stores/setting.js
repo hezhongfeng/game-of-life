@@ -1,8 +1,8 @@
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useSettingStore = defineStore('setting', () => {
-  const cycle = ref(500);
+  const cycle = ref(200);
   const changeCycle = (value) => {
     cycle.value = value;
   };
