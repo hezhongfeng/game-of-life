@@ -8,16 +8,32 @@
     </div>
     <Dialog v-model:visible="settingDialog" modal header="基础设置" class="w-auto">
       <div class="flex items-center gap-4 mb-4">
-        <label for="rowNumber" class="font-semibold w-32">方格数量</label>
-        <InputNumber class="flex-auto" :modelValue="settingStore.rowNumber" @update:modelValue="settingStore.changeRowNumber" inputId="rowNumber" :useGrouping="false" />
+        <label for="rowNumber" class="font-semibold w-32"> 单行数量 </label>
+        <InputNumber
+          class="flex-auto"
+          min="10"
+          max="100"
+          :modelValue="settingStore.rowNumber"
+          @update:modelValue="settingStore.changeRowNumber"
+          inputId="rowNumber"
+          :useGrouping="false"
+        />
       </div>
       <div class="flex items-center gap-4 mb-4">
-        <label for="gridLength" class="font-semibold w-32"> 方格长度 </label>
-        <InputNumber class="flex-auto" :modelValue="settingStore.gridLength" @update:modelValue="settingStore.changeGridLength" inputId="gridLength" :useGrouping="false" />
+        <label for="gridLength" class="font-semibold w-32"> 方格大小 </label>
+        <InputNumber
+          class="flex-auto"
+          min="1"
+          max="100"
+          :modelValue="settingStore.gridLength"
+          @update:modelValue="settingStore.changeGridLength"
+          inputId="gridLength"
+          :useGrouping="false"
+        />
       </div>
       <div class="flex items-center gap-4 mb-8">
-        <label for="cycle" class="font-semibold w-32"> 周期时间（ms） </label>
-        <InputNumber class="flex-auto" :modelValue="settingStore.cycle" @update:modelValue="settingStore.changeCycle" inputId="cycle" :useGrouping="false" />
+        <label for="cycle" class="font-semibold w-32"> 变化周期（ms） </label>
+        <InputNumber class="flex-auto" min="50" max="1000" :modelValue="settingStore.cycle" @update:modelValue="settingStore.changeCycle" inputId="cycle" :useGrouping="false" />
       </div>
       <div class="flex justify-end gap-2">
         <Button type="button" label="取消" severity="secondary" @click="settingDialog = false"></Button>
