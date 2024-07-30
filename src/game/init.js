@@ -22,6 +22,7 @@ const cells = [];
 const drawGrid = () => {
   const stateStore = useStateStore();
   const settingStore = useSettingStore();
+  // 小方格在没开始的时候可以点击切换状态
   const onClick = (event) => {
     if (!stateStore.hasBegin) {
       changeCellState(event.target);
@@ -31,20 +32,27 @@ const drawGrid = () => {
     const row = [];
     cells.push(row);
     for (let j = 0; j < settingStore.rowNumber; j++) {
-      let cell = new Graphics();
+      // 创建一个细胞
+      const cell = new Graphics();
 
-      let bgColor = (i + j) % 2 === 0 ? '#87B990' : '#7eb187';
-
+      // 底色使用两种颜色
+      const bgColor = (i + j) % 2 === 0 ? '#87B990' : '#7eb187';
+      // 画一个矩形，作为一个细胞
       cell.rect(0, 0, settingStore.gridLength, settingStore.gridLength);
+      // 设置细胞的颜色
       cell.fill(bgColor);
-
+      // 设置细胞的位置
       cell.position.x = settingStore.gridLength * i;
       cell.position.y = settingStore.gridLength * j;
-      // 添加事件反馈
+      // 添加事件反馈，否则没有点击事件
       cell.interactive = true;
+      // 细胞的状态
       cell.isLive = false;
+      // 细胞上一个状态的颜色
       cell.beforeColor = '#1e5428';
+      // 细胞的点击事件
       cell.on('pointerdown', onClick);
+      // 将细胞添加进画布
       app.stage.addChild(cell);
       row.push(cell);
     }
