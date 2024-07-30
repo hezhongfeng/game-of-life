@@ -2,6 +2,7 @@
   <div class="app">
     <div ref="pxRef"></div>
     <div class="operations">
+      <Presets></Presets>
       <Button label="设置" @click="settingDialog = true" />
       <Button :label="startLabel" @click="onStart" raised />
       <Button label="清除" @click="clearGame" raised />
@@ -50,6 +51,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useStateStore } from '@/stores/state.js';
 import { useSettingStore } from '@/stores/setting.js';
 import { run, stop } from '@/game/life.js';
+import Presets from './components/presets/Presets.vue';
 
 const pxRef = ref(null);
 const stateStore = useStateStore();

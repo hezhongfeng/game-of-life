@@ -91,4 +91,21 @@ const clearCellsState = () => {
   }
 };
 
-export { init, clearCellsState, cells, changeCellState, reDrawGrid };
+const setPresetShape = (index) => {
+  const stateStore = useStateStore();
+  clearCellsState();
+  if (stateStore.hasBegin) {
+    stateStore.changeGameState();
+    stop();
+  }
+  switch (index) {
+    case 1:
+      changeCellState(cells[20][20]);
+      break;
+
+    default:
+      break;
+  }
+};
+
+export { init, clearCellsState, cells, changeCellState, reDrawGrid, setPresetShape };
