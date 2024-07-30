@@ -154,6 +154,38 @@ const setPresetShape = (index) => {
       changeCellState(cells[21][20]);
       break;
 
+    case '3-1':
+      changeCellState(cells[19][20]);
+      changeCellState(cells[17][21]);
+      changeCellState(cells[19][21]);
+      changeCellState(cells[18][22]);
+      changeCellState(cells[19][22]);
+      break;
+    case '3-2':
+      changeCellState(cells[17][20]);
+      changeCellState(cells[18][20]);
+      changeCellState(cells[19][20]);
+      changeCellState(cells[20][20]);
+      changeCellState(cells[16][21]);
+      changeCellState(cells[20][21]);
+      changeCellState(cells[20][22]);
+      changeCellState(cells[16][23]);
+      changeCellState(cells[19][23]);
+      break;
+    case '3-3':
+      changeCellState(cells[17][20]);
+      changeCellState(cells[18][20]);
+      changeCellState(cells[19][20]);
+      changeCellState(cells[20][20]);
+      changeCellState(cells[21][20]);
+      changeCellState(cells[16][21]);
+      changeCellState(cells[21][21]);
+      changeCellState(cells[21][22]);
+      changeCellState(cells[16][23]);
+      changeCellState(cells[20][23]);
+      changeCellState(cells[18][24]);
+      break;
+
     default:
       break;
   }

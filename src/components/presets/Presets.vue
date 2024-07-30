@@ -27,9 +27,9 @@
         <template #title>移动态</template>
         <template #content>
           <div class="flex flex-auto gap-2">
-            <img src="@/assets/spaceships/Game_of_life_animated_glider.gif" class="hover:brightness-50" />
-            <img src="@/assets/spaceships/Game_of_life_animated_LWSS.gif" class="hover:brightness-50" />
-            <img src="@/assets/spaceships/Animated_Mwss.gif" class="hover:brightness-50" />
+            <img src="@/assets/spaceships/Game_of_life_animated_glider.gif" class="hover:brightness-50" @click="onPreset('3-1')" />
+            <img src="@/assets/spaceships/Game_of_life_animated_LWSS.gif" class="hover:brightness-50" @click="onPreset('3-2')" />
+            <img src="@/assets/spaceships/Animated_Mwss.gif" class="hover:brightness-50" @click="onPreset('3-3')" />
           </div>
         </template>
       </Card>
