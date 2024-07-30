@@ -6,10 +6,10 @@
         <template #title>稳定态</template>
         <template #content>
           <div class="flex flex-auto gap-2">
-            <img src="@/assets/still/Game_of_life_beehive.svg.png" class="hover:brightness-50" @click="onPreset('1-1')" />
-            <img src="@/assets/still/Game_of_life_flower.svg.png" class="hover:brightness-50" @click="onPreset('1-2')" />
-            <img src="@/assets/still/Game_of_life_boat.svg.png" class="hover:brightness-50" @click="onPreset('1-3')" />
-            <img src="@/assets/still/Game_of_life_loaf.svg.png" class="hover:brightness-50" @click="onPreset('1-4')" />
+            <img src="@/assets/still/Game_of_life_beehive.svg.png" class="hover:brightness-50 transition-all duration-300" @click="onPreset('1-1')" />
+            <img src="@/assets/still/Game_of_life_flower.svg.png" class="hover:brightness-50 transition-all duration-300" @click="onPreset('1-2')" />
+            <img src="@/assets/still/Game_of_life_boat.svg.png" class="hover:brightness-50 transition-all duration-300" @click="onPreset('1-3')" />
+            <img src="@/assets/still/Game_of_life_loaf.svg.png" class="hover:brightness-50 transition-all duration-300" @click="onPreset('1-4')" />
           </div>
         </template>
       </Card>
@@ -17,9 +17,9 @@
         <template #title>震荡态</template>
         <template #content>
           <div class="flex flex-auto gap-2">
-            <img src="@/assets/oscillators/Game_of_life_blinker.gif" class="hover:brightness-50" @click="onPreset('2-1')" />
-            <img src="@/assets/oscillators/Game_of_life_beacon.gif" class="hover:brightness-50" @click="onPreset('2-2')" />
-            <img src="@/assets/oscillators/Game_of_life_toad.gif" class="hover:brightness-50" @click="onPreset('2-3')" />
+            <img src="@/assets/oscillators/Game_of_life_blinker.gif" class="hover:brightness-50 transition-all duration-300" @click="onPreset('2-1')" />
+            <img src="@/assets/oscillators/Game_of_life_beacon.gif" class="hover:brightness-50 transition-all duration-300" @click="onPreset('2-2')" />
+            <img src="@/assets/oscillators/Game_of_life_toad.gif" class="hover:brightness-50 transition-all duration-300" @click="onPreset('2-3')" />
           </div>
         </template>
       </Card>
@@ -27,9 +27,9 @@
         <template #title>移动态</template>
         <template #content>
           <div class="flex flex-auto gap-2">
-            <img src="@/assets/spaceships/Game_of_life_animated_glider.gif" class="hover:brightness-50" @click="onPreset('3-1')" />
-            <img src="@/assets/spaceships/Game_of_life_animated_LWSS.gif" class="hover:brightness-50" @click="onPreset('3-2')" />
-            <img src="@/assets/spaceships/Animated_Mwss.gif" class="hover:brightness-50" @click="onPreset('3-3')" />
+            <img src="@/assets/spaceships/Game_of_life_animated_glider.gif" class="hover:brightness-50 transition-all duration-300" @click="onPreset('3-1')" />
+            <img src="@/assets/spaceships/Game_of_life_animated_LWSS.gif" class="hover:brightness-50 transition-all duration-300" @click="onPreset('3-2')" />
+            <img src="@/assets/spaceships/Animated_Mwss.gif" class="hover:brightness-50 transition-all duration-300" @click="onPreset('3-3')" />
           </div>
         </template>
       </Card>
