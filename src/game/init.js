@@ -23,6 +23,11 @@ const cells = [];
 const drawGrid = () => {
   const stateStore = useStateStore();
   const settingStore = useSettingStore();
+  const onClick = (event) => {
+    if (!stateStore.hasBegin) {
+      changeCellState(event.target);
+    }
+  };
   for (let i = 0; i < settingStore.rowNumber; i++) {
     const row = [];
     cells.push(row);
@@ -30,11 +35,6 @@ const drawGrid = () => {
       let cell = new Graphics();
 
       let bgColor = (i + j) % 2 === 0 ? '#87B990' : '#7eb187';
-      const onClick = (event) => {
-        if (!stateStore.hasBegin) {
-          changeCellState(event.target);
-        }
-      };
 
       cell.rect(0, 0, settingStore.gridLength, settingStore.gridLength);
       cell.fill(bgColor);
