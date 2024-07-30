@@ -6,12 +6,11 @@ import { useSettingStore } from '@/stores/setting.js';
 let app = null;
 
 const init = async (refValue) => {
-  app = new Application();
   const settingStore = useSettingStore();
+  app = new Application();
   await app.init({
     width: settingStore.rowNumber * settingStore.gridLength,
-    height: settingStore.rowNumber * settingStore.gridLength,
-    background: 0xcfcbc7
+    height: settingStore.rowNumber * settingStore.gridLength
   });
   refValue.appendChild(app.canvas);
   drawGrid(settingStore);
