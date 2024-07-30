@@ -33,11 +33,6 @@
           </div>
         </template>
       </Card>
-
-      <!-- <div class="flex justify-end gap-2 mt-4">
-        <Button type="button" label="取消" severity="secondary" @click="settingDialog = false"></Button>
-        <Button type="button" label="保存" @click="onSave"></Button>
-      </div> -->
     </Dialog>
   </div>
 </template>
@@ -49,7 +44,6 @@ import { setPresetShape } from '@/game/init.js';
 const settingDialog = ref(false);
 
 const onPreset = (index) => {
-  console.log(index);
   setPresetShape(index);
   settingDialog.value = false;
 };

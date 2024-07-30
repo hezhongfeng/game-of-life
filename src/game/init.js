@@ -92,12 +92,7 @@ const clearCellsState = () => {
 };
 
 const setPresetShape = (index) => {
-  const stateStore = useStateStore();
   clearCellsState();
-  if (stateStore.hasBegin) {
-    stateStore.changeGameState();
-    stop();
-  }
   switch (index) {
     case '1-1':
       changeCellState(cells[19][20]);
