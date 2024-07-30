@@ -3,9 +3,9 @@
     <div ref="pxRef"></div>
     <div class="operations">
       <Presets></Presets>
-      <Button label="设置" @click="settingDialog = true" />
       <Button :label="startLabel" @click="onStart" raised />
       <Button label="清除" @click="clearGame" raised />
+      <Button label="设置" @click="settingDialog = true" />
     </div>
     <Dialog v-model:visible="settingDialog" modal header="基础设置" class="w-auto">
       <div class="flex items-center gap-4 mb-4">
